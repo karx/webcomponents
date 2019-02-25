@@ -41,11 +41,24 @@ class BasicWebComponent extends HTMLElement {
     */
     render() {
         return `
-        <h1> 
-        <img src=${this.IMAGE_OF_POKEMON}>
-        ` + this.NAME_OF_POKEMON + `
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+        
+        <div class="container>
 
-        </h1>
+            <div class="image-of-pokemon">
+                <img src=${this.IMAGE_OF_POKEMON}>
+            </div>
+            <div class="name-of-pokemon">
+                ${this.NAME_OF_POKEMON}
+            </div>
+        </div>
+
+        
         `;
     }
   }
