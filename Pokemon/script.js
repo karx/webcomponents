@@ -11,7 +11,7 @@ class BasicWebComponent extends HTMLElement {
 
     initRandomPokemon() {
         this.SEED = Math.floor(Math.random() * 100000);
-        this.id =  Math.floor((this.SEED%100) + 1);    //= 1 in 100
+        this.id =  Math.floor((this.SEED%500) + 1);    //= 1 in 100
         this.NAME_OF_POKEMON = pokelib.nameOfPokemonFromId(this.id);
         this.IMAGE_OF_POKEMON = pokelib.pokemonImageSourceFromId(this.id);
     }
@@ -41,7 +41,14 @@ class BasicWebComponent extends HTMLElement {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                width: 10%;
+                border-radius: 5px;
             }
+            .container:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+              }
 
             #imgPokemon {
                 display: block;
@@ -55,7 +62,7 @@ class BasicWebComponent extends HTMLElement {
             }
         </style>
         
-        <div class="container>
+        <div class="container">
 
             <div class="image-of-pokemon">
                 <img id="imgPokemon" src=${this.IMAGE_OF_POKEMON}>
