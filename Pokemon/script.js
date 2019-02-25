@@ -17,7 +17,8 @@ class BasicWebComponent extends HTMLElement {
     }
 
     initRandomPokemon() {
-        this.id =  Math.floor((Math.random() * 100) + 1);
+        this.SEED = Math.random() * 100000;
+        this.id =  Math.floor((this.SEED%1000) + 1);    //= 1 in 100
         this.NAME_OF_POKEMON = nameOfPokemonFromId(this.id);
         this.IMAGE_OF_POKEMON = pokemonImageSourceFromId(this.id);
     }
@@ -45,16 +46,30 @@ class BasicWebComponent extends HTMLElement {
             .container {
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #imgPokemon {
+                display: block;
+                margin: auto;
+            }
+            .name-of-pokemon {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
             }
         </style>
         
         <div class="container>
 
             <div class="image-of-pokemon">
-                <img src=${this.IMAGE_OF_POKEMON}>
+                <img id="imgPokemon" src=${this.IMAGE_OF_POKEMON}>
             </div>
             <div class="name-of-pokemon">
-                ${this.NAME_OF_POKEMON}
+                <div class="pokemon-id"> ${this.id} </div>
+                <div class="pokemon-name"> ${this.NAME_OF_POKEMON} </div>
             </div>
         </div>
 
