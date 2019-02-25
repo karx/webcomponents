@@ -1,12 +1,25 @@
 
-const htmlTemplate = `
+function nameOfPokemonFromId(id) {
+    return "Golduck";
+}
 
-`;
+function pokemonImageSourceFromId(id) {
+    return "https://seeklogo.com/images/G/golduck-logo-F92667F51F-seeklogo.com.png"
+}
+
 class BasicWebComponent extends HTMLElement {
 
     
     constructor() {
       super(); // this is mandatory
+
+        this.initRandomPokemon();
+    }
+
+    initRandomPokemon() {
+        this.id =  Math.floor((Math.random() * 100) + 1);
+        this.NAME_OF_POKEMON = nameOfPokemonFromId(this.id);
+        this.IMAGE_OF_POKEMON = pokemonImageSourceFromId(this.id);
     }
   
     connectedCallback() {
@@ -28,7 +41,11 @@ class BasicWebComponent extends HTMLElement {
     */
     render() {
         return `
-        <h1> Bulbasaur </h1>
+        <h1> 
+        <img src=${this.IMAGE_OF_POKEMON}>
+        ` + this.NAME_OF_POKEMON + `
+
+        </h1>
         `;
     }
   }
