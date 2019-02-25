@@ -1,11 +1,4 @@
-
-function nameOfPokemonFromId(id) {
-    return "Golduck";
-}
-
-function pokemonImageSourceFromId(id) {
-    return "https://seeklogo.com/images/G/golduck-logo-F92667F51F-seeklogo.com.png"
-}
+import * as pokelib from'./poke-lib/pokemons.js';
 
 class BasicWebComponent extends HTMLElement {
 
@@ -19,8 +12,8 @@ class BasicWebComponent extends HTMLElement {
     initRandomPokemon() {
         this.SEED = Math.random() * 100000;
         this.id =  Math.floor((this.SEED%1000) + 1);    //= 1 in 100
-        this.NAME_OF_POKEMON = nameOfPokemonFromId(this.id);
-        this.IMAGE_OF_POKEMON = pokemonImageSourceFromId(this.id);
+        this.NAME_OF_POKEMON = pokelib.nameOfPokemonFromId(this.id);
+        this.IMAGE_OF_POKEMON = pokelib.pokemonImageSourceFromId(this.id);
     }
   
     connectedCallback() {
