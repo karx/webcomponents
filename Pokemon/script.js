@@ -10,8 +10,8 @@ class BasicWebComponent extends HTMLElement {
     }
 
     initRandomPokemon() {
-        this.SEED = Math.random() * 100000;
-        this.id =  Math.floor((this.SEED%1000) + 1);    //= 1 in 100
+        this.SEED = Math.floor(Math.random() * 100000);
+        this.id =  Math.floor((this.SEED%100) + 1);    //= 1 in 100
         this.NAME_OF_POKEMON = pokelib.nameOfPokemonFromId(this.id);
         this.IMAGE_OF_POKEMON = pokelib.pokemonImageSourceFromId(this.id);
     }
