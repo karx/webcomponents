@@ -11,15 +11,17 @@ class BasicWebComponent extends HTMLElement {
 
     initRandomPokemon() {
         this.SEED = Math.floor(Math.random() * 100000);
-        this.id =  Math.floor((this.SEED%500) + 1);    //= 1 in 100
+        if (this.getAttribute('id')) {
+            this.id = this.getAttribute('id');
+            console.log('User defined pokemon');
+        } else {
+            this.id =  Math.floor((this.SEED%500) + 1);    //= 1 in 100
+        }
         this.NAME_OF_POKEMON = pokelib.nameOfPokemonFromId(this.id);
         this.IMAGE_OF_POKEMON = pokelib.pokemonImageSourceFromId(this.id);
     }
   
     connectedCallback() {
-    //   const pElem = document.createElement('p');
-    //   pElem.textContent = this.getAttribute('text');
-
       const rootElem = document.createElement('div');
       rootElem.innerHTML = this.render();
   
@@ -28,6 +30,7 @@ class BasicWebComponent extends HTMLElement {
     }
   
     attributeChangedCallback(attr, oldVal, newVal) {   
+      
     }
 
     /* 
@@ -91,6 +94,6 @@ class BasicWebComponent extends HTMLElement {
     }
   }
   
-  BasicWebComponent.observedAttributes = ['icon'];
+  BasicWebComponent.observedAttributes = ['id'];
   
   customElements.define('kaaro-pokemon', BasicWebComponent);
