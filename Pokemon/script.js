@@ -36,20 +36,24 @@ class BasicWebComponent extends HTMLElement {
     render() {
         return `
         <style>
-            .container {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
+            .card {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
                 transition: 0.3s;
                 width: 10%;
                 border-radius: 5px;
             }
-            .container:hover {
+            .card:hover {
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
               }
 
+            .container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            
             #imgPokemon {
                 display: block;
                 margin: auto;
@@ -57,19 +61,28 @@ class BasicWebComponent extends HTMLElement {
             .name-of-pokemon {
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: space-around;
                 align-items: center;
+                width: 100%;
+            }
+            .stats {
+                display:none;
             }
         </style>
-        
-        <div class="container">
+        <div class="card">
+            <div class="container">
 
-            <div class="image-of-pokemon">
-                <img id="imgPokemon" src=${this.IMAGE_OF_POKEMON}>
+                <div class="image-of-pokemon">
+                    <img id="imgPokemon" src=${this.IMAGE_OF_POKEMON}>
+                </div>
+                <div class="name-of-pokemon">
+                    <div class="pokemon-id"> ${this.id} </div>
+                    <div class="pokemon-name"> ${this.NAME_OF_POKEMON} </div>
+                </div>
+
             </div>
-            <div class="name-of-pokemon">
-                <div class="pokemon-id"> ${this.id} </div>
-                <div class="pokemon-name"> ${this.NAME_OF_POKEMON} </div>
+            <div class="stats" >
+                Some stats
             </div>
         </div>
 
