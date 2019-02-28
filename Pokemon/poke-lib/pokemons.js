@@ -11,3 +11,7 @@ export function pokemonImageSourceFromId(id) {
     var imageName = base_str.substr(base_str.length - 3, base_str) + nameOfPokemonFromId(id);
     return `https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/thumbnails/${imageName}.png`;
 }
+
+export function pokemonFromId(id) {
+    return pokedex.en_pokedex[id-1];
+}

@@ -9,31 +9,48 @@ class BasicWebComponent extends HTMLElement {
         this.initRandomPokemon();
     }
 
-    initRandomPokemon() {
-        this.SEED = Math.floor(Math.random() * 100000);
-        if (this.getAttribute('id')) {
-            this.id = this.getAttribute('id');
-            console.log('User defined pokemon');
-        } else {
-            this.id =  Math.floor((this.SEED%500) + 1);    //= 1 in 100
-        }
-        this.NAME_OF_POKEMON = pokelib.nameOfPokemonFromId(this.id);
-        this.IMAGE_OF_POKEMON = pokelib.pokemonImageSourceFromId(this.id);
-    }
-  
     connectedCallback() {
       const rootElem = document.createElement('div');
       rootElem.innerHTML = this.render();
   
       let shadowRoot = this.attachShadow({ mode: 'open' });
       shadowRoot.appendChild(rootElem);
+      this.addEventListener( 'click', this._onClick);
     }
-  
+
+    disconnectedCallback() {
+
+    }
+    
     attributeChangedCallback(attr, oldVal, newVal) {   
       
     }
 
-    /* 
+    initRandomPokemon() {
+        this.SEED = Math.floor(Math.random() * 100000);
+        if (this.hasAttribute('id')) {
+            this.id = this.getAttribute('id');
+            console.log('User defined pokemon');
+        } else {
+            this.id =  Math.floor((this.SEED%500) + 1);    //= 1 in 100
+            this.setAttribute('id', this.id);
+        }
+        this.NAME_OF_POKEMON = pokelib.nameOfPokemonFromId(this.id);
+        this.IMAGE_OF_POKEMON = pokelib.pokemonImageSourceFromId(this.id);
+        this.POKEMON_INFO = pokelib.pokemonFromId(this.id);
+    }
+  
+
+    _onClick(event) {
+        console.log(event);
+        console.log(this.shadowRoot.querySelectorAll(".stats"));
+        this.shadowRoot.querySelectorAll(".stats").forEach( (element) => {
+            let x = element.style.display = 'flex';
+            console.log(x);
+        })
+    }
+
+    /* in/
         render will return the html Template to be added to the HTML for this component
     */
     render() {
@@ -42,8 +59,10 @@ class BasicWebComponent extends HTMLElement {
             .card {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
                 transition: 0.3s;
-                width: 10%;
+                width: fit;
                 border-radius: 5px;
+                display: flex;
+                flex-direction: row;
             }
             .card:hover {
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -70,6 +89,26 @@ class BasicWebComponent extends HTMLElement {
             }
             .stats {
                 display:none;
+                flex-direction: column;
+            }
+            .types {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+            }
+            .base {
+                display: flex;
+                flex-direction: column;
+
+            }
+            .eachStat {
+                display: flex;
+                flex-direction: row;
+                justify-content: right;
+            }
+            .eachStatValue {
+                padding-left: 5px;
             }
         </style>
         <div class="card">
@@ -85,7 +124,20 @@ class BasicWebComponent extends HTMLElement {
 
             </div>
             <div class="stats" >
-                Some stats
+                <div class="types">
+                ${this.POKEMON_INFO.type.reduce( (valueTillNow, currentValue) => {
+                        return valueTillNow + '<div class="type"> ' + currentValue + '</div>';
+                }, '')}
+                </div>
+                <div class="base">
+                ${Object.keys(this.POKEMON_INFO.base).reduce( (valueTillNow, currentValue) => {
+                    return valueTillNow + 
+                        '<div class="eachStat"> ' +
+                            '<div class="eachStatType"> ' + currentValue + '</div>' +
+                            '<div class="eachStatValue"> ' + this.POKEMON_INFO.base[currentValue] + '</div>' +  
+                        '</div>';
+            }, '')}
+                </div>
             </div>
         </div>
 
