@@ -22,6 +22,12 @@ Then can use
 <script type="module" src="http://localhost:8080/script.js"></script>   
 ```
 
+## How to use them
+Now you can use the component anywhere in your html
+```
+<kaaro-pokemon></kaaro-pokemon>
+```
+
 
 ## Contributions 
 Contributions are welcome
