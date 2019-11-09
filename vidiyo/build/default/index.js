@@ -1,0 +1,1 @@
+import './vidiyo-wc.js';
