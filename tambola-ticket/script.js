@@ -16,7 +16,14 @@ class BasicWebComponent extends HTMLElement {
       let shadowRoot = this.attachShadow({ mode: 'open' });
       shadowRoot.appendChild(rootElem);
     //   this.addEventListener( 'click', this._onClick);
-      this.addEventListener('dblclick', this.process_touchstart, false);
+      
+      var hasTouchscreen = 'ontouchstart' in window;
+      if (hasTouchscreen) {
+          console.log('touchDisplay');
+          this.addEventListener('touchstart', this._onClick, false)
+      } else {
+        this.addEventListener('dblclick', this._onClick, false);
+      }
     }
 
     disconnectedCallback() {
@@ -61,7 +68,7 @@ class BasicWebComponent extends HTMLElement {
         return html_patch;
     }   
   
-    process_touchstart(event) {
+    _onClick(event) {
         console.log(event);
         console.log(event.target);
         console.log(event.originalTarget);
@@ -76,14 +83,12 @@ class BasicWebComponent extends HTMLElement {
             }
         }
     }
-    _onClick(event) {
+
+    process_touchstart(event) {
+        console.log('Touch Event');
         console.log(event);
-        console.log(this.shadowRoot.querySelectorAll(".stats"));
-        this.shadowRoot.querySelectorAll(".stats").forEach( (element) => {
-            let x = element.style.display = 'flex';
-            console.log(x);
-        })
     }
+   
 
     /* in/
         render will return the html Template to be added to the HTML for this component
