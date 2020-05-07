@@ -20,7 +20,7 @@ class BasicWebComponent extends HTMLElement {
       var hasTouchscreen = 'ontouchstart' in window;
       if (hasTouchscreen) {
           console.log('touchDisplay');
-          this.addEventListener('touchstart', this._onClick, false)
+          this.addEventListener('touchstart', this._onClick, false);    // need to create alternative to double tap/click on touch devices, TODO: create alternative interaction for mobile
       } else {
         this.addEventListener('dblclick', this._onClick, false);
       }
