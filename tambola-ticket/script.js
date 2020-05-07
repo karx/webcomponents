@@ -15,7 +15,8 @@ class BasicWebComponent extends HTMLElement {
   
       let shadowRoot = this.attachShadow({ mode: 'open' });
       shadowRoot.appendChild(rootElem);
-      this.addEventListener( 'click', this._onClick);
+    //   this.addEventListener( 'click', this._onClick);
+      this.addEventListener('dblclick', this.process_touchstart, false);
     }
 
     disconnectedCallback() {
@@ -52,7 +53,7 @@ class BasicWebComponent extends HTMLElement {
         ticket_values.forEach( (row,i) => {
             html_patch += `<tr id="row-${i}">`;
             row.forEach( (val,j) => {
-                html_patch+= `<td id="value-${i}${j}"> ${val} </td>`;
+                html_patch+= `<td id="value-${i}${j}" class="${val != 0 ? 'is_num': 'is_blank'} num_${val}"> ${val != 0 ? val : ''} </td>`;
             });
             html_patch += `</tr>`;
         });
@@ -60,7 +61,21 @@ class BasicWebComponent extends HTMLElement {
         return html_patch;
     }   
   
-
+    process_touchstart(event) {
+        console.log(event);
+        console.log(event.target);
+        console.log(event.originalTarget);
+        if(event.originalTarget.tagName == 'TD') {
+            let classListOfTag = event.originalTarget.classList;
+            if(classListOfTag.contains("is_num")) {
+                if(classListOfTag.contains("crossed")) {
+                    classListOfTag.remove("crossed");
+                } else {
+                    classListOfTag.add("crossed");
+                }
+            }
+        }
+    }
     _onClick(event) {
         console.log(event);
         console.log(this.shadowRoot.querySelectorAll(".stats"));
@@ -98,6 +113,9 @@ class BasicWebComponent extends HTMLElement {
            .ticket-values table td {
                border: 1px solid black;
                padding: 5px;
+            }
+            .crossed {
+                background-color: red;
             }
             .ticket-info {
                 display: flex;
