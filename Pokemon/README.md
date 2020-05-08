@@ -22,6 +22,8 @@ Then can use
 <script type="module" src="http://localhost:8080/script.js"></script>   
 ```
 
+Checkout test page: [here](https://karx.github.io/webcomponents/Pokemon)
+
 
 ## Contributions 
 Contributions are welcome
