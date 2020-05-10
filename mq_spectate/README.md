@@ -1,7 +1,7 @@
 ## <mq-spectate>
 Mqtt Enabled Web component
 
-## Breif
+## Brief
 This webcomponent would allow us to spectate an MQTT thread chain.
 
 * Orignally developing to host a Distributed Housie Game and kartaDevice Simulator ;)
@@ -35,7 +35,7 @@ In the connectcallback lifesycle event of the webc we Initiate our MQTT connecti
 
 Here we connect to the host, defaults to my selfhosted MQTT borker (EMQ), assign a randomized Client name.
 
-And on successful connection, subscribe to basic MQTT channels. Refer [My MQTT Conventions](http://kaaro.akriya.co.in/mqtt/convention/) to know more about how we name my channels.
+And on successful connection, the web component subscribes to basic MQTT channels. Refer [My MQTT Conventions](http://kaaro.akriya.co.in/mqtt/convention/) to know more about how we name my channels.
 
 * we have 2 attributes for this webc, `host` and `topic`, add more alongside them as and when needed.
  
