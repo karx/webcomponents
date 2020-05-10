@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test page for mq-spectate WebComponent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./style.css" />
+    <script type="module" src="./script.js"></script>   
+</head>
+<body>
+    <h1>
+        Test page for mq-spectate WebComponent
+    </h1>
+    <mq-spectate id="1"></mq-spectate>
+    <script>
+        
+        // If need to listen to messages on Main page
+        // I would rather compose another custom element with this Element.
+        // The return object is of Type: Message as descirbed here: https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Message.html
+        
+        document.addEventListener('mqttmessage', e => console.log('In Main Page:', e.detail));
+
+        
+        
+    </script>
+</body>
+</html>
