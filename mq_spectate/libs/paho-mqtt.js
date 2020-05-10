@@ -1,3 +1,5 @@
+/* kaaro - modified to work as ES6 module import, to work inside a webcomponent ;) */
+
 /*******************************************************************************
  * Copyright (c) 2013 IBM Corp.
  *
@@ -79,8 +81,6 @@ function onMessageArrived(message) {
  * </pre></code>
  * @namespace Paho
  */
-
-/* modified to work as ES6 module import, to work inside a webcomponent ;) */
 
 	export var PahoMQTT = (function (global) {
 
