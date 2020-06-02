@@ -1,7 +1,18 @@
-## Kaao Webcomponents - A collection of webcomponents built
+## Kaaro Webcomponents - A collection of webcomponents built
+* Basic Component `<basic-webc>`   
+Easy template for starter.
 
+* Big Bart Simpson Component `<baart-webc>`
+Mostly HTML CSS burnt into a webc
 
+* Pokemon Component `<kaaro-pokemon>`
+A wild pokemon appears. What 
 
+* MQTT enabled Component `mq-spectate>`
+A mqtt client burnt onto webc. The best kindof starter.
+
+* Tambola Ticket Component `tambola-ticket>`
+Procedurally generated Bingo Tickets. `[WIP]`
 
 ## Discussion, Support and Issues
 For general support and discussion of this project, please join the Discord server: [Discord Invite Link](https://discord.gg/B2cERQ5)
