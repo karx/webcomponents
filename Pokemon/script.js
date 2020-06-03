@@ -1,7 +1,7 @@
 import * as pokelib from'./poke-lib/pokemons.js';
 
 class BasicWebComponent extends HTMLElement {
-
+    
     
     constructor() {
       super(); // this is mandatory
